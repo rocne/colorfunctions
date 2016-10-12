@@ -8,6 +8,10 @@ var redFunctionInput;
 var greenFunctionInput;
 var blueFunctionInput;
 
+var redFunction;
+var blueFunction;
+var greenFunction;
+
 function setup() {
 	var scaleLabel = createSpan().elt;
 	scaleLabel.innerHTML = "Scale: ";
@@ -19,19 +23,30 @@ function setup() {
 	redFunctionInput = createElement("textarea").elt;
 	redFunctionInput.cols = 20;
 	redFunctionInput.rows = 10;
+	redFunctionInput.onchange = redFunctionInputChange_cb;
+	redFunctionInput.value = "return mySin(y);";
 
 	blueFunctionInput = createElement("textarea").elt;
 	blueFunctionInput.cols = 20;
 	blueFunctionInput.rows = 10;
+	blueFunctionInput.onchange = blueFunctionInputChange_cb;
+	blueFunctionInput.value = "return mySin(x);";
 
 	greenFunctionInput = createElement("textarea").elt;
 	greenFunctionInput.cols = 20;
 	greenFunctionInput.rows = 10;
+	greenFunctionInput.onchange = greenFunctionInputChange_cb;
+	greenFunctionInput.value = "return mySin(x * y);";	
+
 	createElement("BR");
 
 	var drawButton = createButton("Draw").elt;
 	drawButton.onclick = drawButtonClick_cb;
 	createElement("BR");
+
+	greenFunctionInputChange_cb();
+	redFunctionInputChange_cb();
+	blueFunctionInputChange_cb();
 
 	createCanvas(WIDTH, HEIGHT);
 	drawIt();
@@ -47,15 +62,39 @@ function scaleSliderChange_cb() {
 	//drawIt();
 }
 
+function redFunctionInputChange_cb() {
+	var code = redFunctionInput.value;
+	redFunction = new Function("x", "y", code);
+}
+
+function greenFunctionInputChange_cb() {
+	var code = greenFunctionInput.value;
+	greenFunction = new Function("x", "y", code);
+}
+
+function blueFunctionInputChange_cb() {
+	var code = blueFunctionInput.value;
+	blueFunction = new Function("x", "y", code);
+}
+
 function myRed(x, y) {
-	return mySin(y);
+	if(redFunction)
+		return redFunction(x, y);
+
+	return mySin(y);	
 }
 
 function myGreen(x, y) {
+	if (greenFunction)
+		return greenFunction(x, y);
+
 	return mySin((x * y));		
 }
 
 function myBlue(x, y) {
+	if (blueFunction)
+		return blueFunction(x, y);
+
 	return mySin(x);
 }
 
