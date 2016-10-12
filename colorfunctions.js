@@ -2,7 +2,7 @@
 var HEIGHT = 300;
 var WIDTH = 300;
 
-var SCL = 0.5;
+var SCL = 0.25;
 
 var redFunctionInput;
 var greenFunctionInput;
@@ -13,7 +13,7 @@ var blueFunction;
 var greenFunction;
 
 var inputWidth = 30;
-var inputHeight = 6;
+var inputHeight = 3;
 
 function setup() {
 	var scaleLabel = createSpan().elt;
@@ -26,7 +26,7 @@ function setup() {
 
 	createP("Define functions to return the RGB componenets of each pixel's color. x and y parameters represent the x and y coordinates of the pixel to color. Remember that (0, 0) is the top left! <br /> Return a value between 0 and 1");
 
-	createP("What is mySin? mySin(a) = (sin(a) + 1) / 2 <br /> mySin has the same shape as sin, but its range is 0 to 1 instead of -1 to 1");
+	createP("What is mySin?<br /> mySin(a) = (sin(a) + 1) / 2 <br /> mySin has the same shape as sin, but its range is 0 to 1 instead of -1 to 1");
 
 	createSpan("function red(x, y) {");
 	createElement("BR");
