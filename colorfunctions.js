@@ -12,6 +12,9 @@ var redFunction;
 var blueFunction;
 var greenFunction;
 
+var inputWidth = 30;
+var inputHeight = 6;
+
 function setup() {
 	var scaleLabel = createSpan().elt;
 	scaleLabel.innerHTML = "Scale: ";
@@ -19,25 +22,49 @@ function setup() {
 	scaleSlider.readout = createElement("SPAN", SCL).elt;
 	scaleSlider.onchange = scaleSliderChange_cb;
 	createElement("BR");
+	createElement("BR");
 
+	createP("Define functions to return the RGB componenets of each pixel's color. x and y parameters represent the x and y coordinates of the pixel to color. Remember that (0, 0) is the top left! <br /> Return a value between 0 and 1");
+
+	createP("What is mySin? mySin(a) = (sin(a) + 1) / 2 <br /> mySin has the same shape as sin, but its range is 0 to 1 instead of -1 to 1");
+
+	createSpan("function red(x, y) {");
+	createElement("BR");
 	redFunctionInput = createElement("textarea").elt;
-	redFunctionInput.cols = 20;
-	redFunctionInput.rows = 10;
+	redFunctionInput.style.paddingLeft = "2em";
+	redFunctionInput.cols = inputWidth;
+	redFunctionInput.rows = inputHeight;
 	redFunctionInput.onchange = redFunctionInputChange_cb;
 	redFunctionInput.value = "return mySin(y);";
-
+	createElement("BR");
+	createSpan("}");
+	createElement("BR");
+	createElement("BR");
+	
+	createSpan("function blue(x, y) {");
+	createElement("BR");
 	blueFunctionInput = createElement("textarea").elt;
-	blueFunctionInput.cols = 20;
-	blueFunctionInput.rows = 10;
+	blueFunctionInput.style.paddingLeft = "2em";
+	blueFunctionInput.cols = inputWidth;
+	blueFunctionInput.rows = inputHeight;
 	blueFunctionInput.onchange = blueFunctionInputChange_cb;
 	blueFunctionInput.value = "return mySin(x);";
+	createElement("BR");
+	createSpan("}");
+	createElement("BR");
+	createElement("BR");
 
+	createSpan("function green(x, y) {");
+	createElement("BR");
 	greenFunctionInput = createElement("textarea").elt;
-	greenFunctionInput.cols = 20;
-	greenFunctionInput.rows = 10;
+	greenFunctionInput.style.paddingLeft = "2em";
+	greenFunctionInput.cols = inputWidth;
+	greenFunctionInput.rows = inputHeight;
 	greenFunctionInput.onchange = greenFunctionInputChange_cb;
 	greenFunctionInput.value = "return mySin(x * y);";	
-
+	createElement("BR");
+	createSpan("}");
+	createElement("BR");
 	createElement("BR");
 
 	var drawButton = createButton("Draw").elt;
