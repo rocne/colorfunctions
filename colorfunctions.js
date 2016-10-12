@@ -4,12 +4,29 @@ var WIDTH = 300;
 
 var SCL = 0.5;
 
+var redFunctionInput;
+var greenFunctionInput;
+var blueFunctionInput;
+
 function setup() {
 	var scaleLabel = createSpan().elt;
 	scaleLabel.innerHTML = "Scale: ";
 	var scaleSlider = createSlider(0, 1, SCL, 0.005).elt;
 	scaleSlider.readout = createElement("SPAN", SCL).elt;
 	scaleSlider.onchange = scaleSliderChange_cb;
+	createElement("BR");
+
+	redFunctionInput = createElement("textarea").elt;
+	redFunctionInput.cols = 20;
+	redFunctionInput.rows = 10;
+
+	blueFunctionInput = createElement("textarea").elt;
+	blueFunctionInput.cols = 20;
+	blueFunctionInput.rows = 10;
+
+	greenFunctionInput = createElement("textarea").elt;
+	greenFunctionInput.cols = 20;
+	greenFunctionInput.rows = 10;
 	createElement("BR");
 
 	createCanvas(WIDTH, HEIGHT);
