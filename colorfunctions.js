@@ -29,14 +29,22 @@ function setup() {
 	greenFunctionInput.rows = 10;
 	createElement("BR");
 
+	var drawButton = createButton("Draw").elt;
+	drawButton.onclick = drawButtonClick_cb;
+	createElement("BR");
+
 	createCanvas(WIDTH, HEIGHT);
+	drawIt();
+}
+
+function drawButtonClick_cb() {
 	drawIt();
 }
 
 function scaleSliderChange_cb() {
 	this.readout.innerHTML = this.value;
 	SCL = this.value;
-	drawIt();
+	//drawIt();
 }
 
 function myRed(x, y) {
@@ -44,7 +52,7 @@ function myRed(x, y) {
 }
 
 function myGreen(x, y) {
-	return mySin(sqrt(x * y));		
+	return mySin((x * y));		
 }
 
 function myBlue(x, y) {
