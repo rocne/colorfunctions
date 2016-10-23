@@ -134,11 +134,33 @@ function draw() {
 }
 
 function drawIt() {
+	var maxR = myRed(0, 0);
+	var maxG = myGreen(0, 0);
+	var maxB = myBlue(0, 0);
+	var minR = maxR;
+	var minG = maxG;
+	var minB = maxB;
+
+	// TODO: handle when minR == maxR, etc.
+
 	for (var x = 0; x < WIDTH; x++) {
 		for (var y = 0; y < HEIGHT; y++) {
-			var r = myRed(x * SCL, y * SCL) * 255;
-			var g = myGreen(x * SCL, y * SCL) * 255;
-			var b = myBlue(x * SCL, y * SCL) * 255;
+			var r = myRed(x * SCL, y * SCL);
+			var g = myGreen(x * SCL, y * SCL);
+			var b = myBlue(x * SCL, y * SCL);
+			minG = min(minG, g);
+			maxG = max(maxG, g);
+			minB = min(minB, b);
+			maxB = max(maxB, b);
+			minR = min(minR, r);
+			maxR = max(maxR, r);
+		}
+	}
+	for (var x = 0; x < WIDTH; x++) {
+		for (var y = 0; y < HEIGHT; y++) {
+			var r =255 * (myRed(x * SCL, y * SCL) - minR) / (maxR - minR);
+			var g =	255 * (myGreen(x * SCL, y * SCL) - minG) / (maxG - minG);
+			var b =	255 * (myBlue(x * SCL, y * SCL) - minB) / (maxB - minB);
 			stroke(r, g, b);
 			point(x, y);
 		}
